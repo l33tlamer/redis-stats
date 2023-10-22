@@ -109,8 +109,6 @@ $command = [
 
 ![Screenshot of redis-stats](/screenshot.png) 
 
-![](https://evermeet.cx/pub/img/redis-stats.png)
-
 ## Acknowledgements
 
 I found the original script at https://gist.github.com/kabel/10023961
