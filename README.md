@@ -1,5 +1,13 @@
 # redis-stats
 
+
+Disclaimer: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)**. This repo only adds a `Dockerfile` based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
+
+A built ready-to-use image is available from the Github packages registry and from the Docker Hub registry.
+
+The following is the original readme:
+
+
 ## Features
 
 - lightweight
