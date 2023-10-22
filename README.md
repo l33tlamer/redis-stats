@@ -2,7 +2,6 @@
 
 [<img src="screenshot.png" width="450"/>](screenshot.png)
 
-
 **Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)** and provides a Docker image based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
 
 * Ready-to-use image is available from the **[Docker Hub](https://hub.docker.com/r/l33tlamer/redis-stats)** registry. Currently `amd64` only.
