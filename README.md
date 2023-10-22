@@ -7,7 +7,7 @@
 
 * When used without environment variables or config file, a default of "127.0.0.1:6379" will try to be used.
 
-* For a single Redis instance, supply the environment variables `REDIS_HOST` and `REDIS_PORT` to overwrite the default.
+* For a single Redis instance, supply the environment variables `$REDIS_NAME`, `REDIS_HOST` and `REDIS_PORT` to overwrite the default.
 
 * For multiple Redis instances, do not use the variables but instead mount `config.php` to `/var/www/html/config.php` in the container.
 
@@ -20,7 +20,7 @@ Usage examples:
 
 * `docker run -d --name redis-stats -p 8080:8080 l33tlamer/redis-stats`
 
-* `docker run -d --name redis-stats -e REDIS_HOST=192.168.20.50 -e REDIS_PORT=6379 -p 8080:8080 l33tlamer/redis-stats`
+* `docker run -d --name redis-stats -e -e REDIS_NAME=Redis REDIS_HOST=192.168.20.50 -e REDIS_PORT=6379 -p 8080:8080 l33tlamer/redis-stats`
 
 * `docker run -d --name redis-stats -v config.php:/var/www/html/config.php -p 8080:8080 l33tlamer/redis-stats`
 
