@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  redis-stats:
+    container_name: redis-stats
+    image: l33tlamer/redis-stats
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config.php:/var/www/html/config.php
