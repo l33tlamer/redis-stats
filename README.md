@@ -1,5 +1,7 @@
 # redis-stats
 
+[<img src="https://github.com/l33tlamer/redis-stats/raw/master/screenshot.png" width="450"/>](https://github.com/l33tlamer/redis-stats/raw/master/screenshot.png)
+
 
 **Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)** and provides a Docker image based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
 
@@ -26,7 +28,10 @@ Usage examples:
 
 * For Docker Compose a `docker-compose.example.yml` file exists in the root of this repo.
 
+
 *From the original redis-stat the update-checker and footer have been removed.*
+
+
 
 # The following is the original README:
 
@@ -104,10 +109,6 @@ $command = [
 	],
 ];
 ```
-
-## Screenshot
-
-![Screenshot of redis-stats](/screenshot.png) 
 
 ## Acknowledgements
 
