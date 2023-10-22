@@ -5,9 +5,19 @@ session_start();
 $id = bin2hex(random_bytes(16));
 $_SESSION['id'] = $id;
 
-// Default config
+// defaults
+$redis_name = "Localhost";
+$redis_host = "localhost";
+$redis_port = 6379;
+
+// get host from env var, overriding defaults
+$redis_name = getenv('REDIS_NAME');
+$redis_host = getenv('REDIS_HOST');
+$redis_port = getenv('REDIS_PORT');
+
+// use this when no config.php is found
 $servers = [
-	[ 'Local', '127.0.0.1', 6379 ],
+	[ $redis_name, $redis_host, $redis_port ],
 ];
 
 if (file_exists(dirname(__FILE__)."/config.php"))
@@ -18,11 +28,6 @@ if (!$servers)
 {
 	die("No servers in config found.");
 }
-
-define("URL", "https://github.com/tessus/redis-stats");
-define("UPDATE_URL", "https://raw.githubusercontent.com/tessus/redis-stats/master/VERSION");
-
-$_SESSION['updateURL'] = UPDATE_URL;
 
 // Default settings
 if (!defined('DEBUG'))
@@ -45,18 +50,10 @@ if (!defined('CONFIRM_FLUSHALL'))
 {
 	define("CONFIRM_FLUSHALL", true);
 }
-if (!defined('CHECK_FOR_UPDATE'))
-{
-	define("CHECK_FOR_UPDATE", true);
-}
 if (!defined('STATUS_LINE'))
 {
 	define("STATUS_LINE", "bottom");
 }
-
-// Get local version
-$localVersion = trim(@file_get_contents('./VERSION'));
-$_SESSION['localVersion'] = $localVersion;
 
 // Process GET request
 $server = 0;
@@ -587,10 +584,7 @@ window.createPie = createPie;
 </head>
 <body onload="initRedisInfo()">
 <div class="wrapper">   <!-- Wrapper  -->
-<?php if (CHECK_FOR_UPDATE === true) { ?>
-<button id="checkbutton" style="float: right; margin: 20px 10px 20px -200px;" onclick="checkForUpdate();">Check for update</button>
-<?php } ?>
-<h1>Redis Stats <span style="font-size: 50%;"><?php echo $localVersion; ?></span></h1>
+<h1>Redis Stats</h1>
 <form method="get">
 <label for="server">Server:</label>
 <select onchange="this.form.submit()" id="server" name="s">
@@ -780,9 +774,6 @@ else
 <?php } ?>
 
 </div>   <!-- Wrapper  -->
-<footer>
-	<a href="<?php echo URL; ?>" target="_blank"><?php echo URL; ?></a>
-</footer>
 <script>
 var rate  = 0;
 var play  = 0;
@@ -798,7 +789,6 @@ const CONFIRM_FLUSHDB  = '<?php echo CONFIRM_FLUSHDB; ?>';
 const CONFIRM_FLUSHALL = '<?php echo CONFIRM_FLUSHALL; ?>';
 const FLUSHDB          = '<?php echo FLUSHDB; ?>';
 const FLUSHALL         = '<?php echo FLUSHALL; ?>';
-const URL              = '<?php echo URL; ?>';
 const ERROR            = '<?php echo empty($error) ? false : true ?>';
 
 <?php if (!$error) { ?>
@@ -868,55 +858,6 @@ function initRedisInfo() {
 		}
 		defaultMsg();
 	}
-}
-
-function checkForUpdate() {
-	var xmlhttp = new XMLHttpRequest();
-
-	const req = 'check.php';
-	xmlhttp.onreadystatechange = function() {
-		const curBgCol = doc_msg.style.backgroundColor;
-		const curText  = doc_msg.innerHTML;
-		if (this.readyState==4 && this.status == 200) {
-			if (this.responseText != 'Error') {
-				const response = this.responseText;
-				if (response == '0') {
-					const duration = 5000;
-					doc_msg.style.visibility      = 'visible';
-					doc_msg.style.backgroundColor = successColor;
-					doc_msg.innerHTML             = 'Redis Stats is up to date.';
-					if (!ERROR) {
-						setTimeout(function() {defaultMsg()}, duration);
-					} else {
-						setTimeout(function() {showMsg(curBgCol, curText)}, duration);
-					}
-				} else {
-					const text = 'Version ' + response + ' is <a href="' + URL + '" target="_blank">available</a>.';
-					const duration = 10000;
-					doc_msg.style.visibility      = 'visible';
-					doc_msg.style.backgroundColor = updateColor;
-					doc_msg.innerHTML             = text;
-					if (!ERROR) {
-						setTimeout(function() {defaultMsg()}, duration);
-					} else {
-						setTimeout(function() {showMsg(curBgCol, curText)}, duration);
-					}
-				}
-			} else {
-				const duration = 5000;
-				doc_msg.style.visibility      = 'visible';
-				doc_msg.style.backgroundColor = errorColor;
-				doc_msg.innerHTML             = 'Could not retrieve version information.';
-				if (!ERROR) {
-					setTimeout(function() {defaultMsg()}, duration);
-				} else {
-					setTimeout(function() {showMsg(curBgCol, curText)}, duration);
-				}
-			}
-		}
-	};
-	xmlhttp.open("GET", req, true);
-	xmlhttp.send();
 }
 
 function flushDB(server, db) {
