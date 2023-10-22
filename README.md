@@ -107,6 +107,8 @@ $command = [
 
 ## Screenshot
 
+![Screenshot of redis-stats](/screenshot.png) 
+
 ![](https://evermeet.cx/pub/img/redis-stats.png)
 
 ## Acknowledgements
