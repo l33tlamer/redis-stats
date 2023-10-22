@@ -1,18 +1,34 @@
 # redis-stats
 
 
-**Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)**. This repo simply dockerizes it based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
+**Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)** and provides a Docker image based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
 
 * Ready-to-use image is available from the **[Docker Hub](https://hub.docker.com/r/l33tlamer/redis-stats)** registry. Currently `amd64` only.
 
-* Basic usage: `docker run -d --name redis-stats -v ./config.php:/var/www/html/config.php -p 8080:8080 l33tlamer/redis-stats`
+* When used without environment variables or config file, a default of "127.0.0.1:6379" will try to be used.
+
+* For a single Redis instance, supply the environment variables `REDIS_HOST` and `REDIS_PORT` to overwrite the default.
+
+* For multiple Redis instances, do not use the variables but instead mount `config.php` to `/var/www/html/config.php` in the container.
+
+* The `config.php` file can be downloaded from the repo here as template or copied out of the container:
+* * `docker cp redis-stats:/var/www/html/config.template.php ./config.php`
+
+* Edit the config file to list **multiple Redis instances**, examples are also provided for usage with **socket**, and **user/password**.
+
+Usage examples:
+
+* `docker run -d --name redis-stats -p 8080:8080 l33tlamer/redis-stats`
+
+* `docker run -d --name redis-stats -e REDIS_HOST=192.168.20.50 -e REDIS_PORT=6379 -p 8080:8080 l33tlamer/redis-stats`
+
+* `docker run -d --name redis-stats -v config.php:/var/www/html/config.php -p 8080:8080 l33tlamer/redis-stats`
 
 * For Docker Compose a `docker-compose.example.yml` file exists in the root of this repo.
 
-* The `config.php` file with Redis connection info is required. Copy the template from this repo or copy it out of a container: `docker cp redis-stats:/var/www/html/config.template.php ./config.php`
+*From the original redis-stat the update-checker and footer have been removed.*
 
-
-The following is the original readme:
+# The following is the original README:
 
 
 ## Features
