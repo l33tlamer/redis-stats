@@ -1,9 +1,16 @@
 # redis-stats
 
 
-**Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)**. This repo only adds a `Dockerfile` based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
+**Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)**. This repo simply adds a `Dockerfile` based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
 
-A built ready-to-use image is available from the Github packages registry and from the Docker Hub registry.
+* Ready-to-use image is available from the Github packages registry and from the Docker Hub registry.
+
+* Basic usage: `docker run -d --name redis-stats -v ./config.php:/var/www/html/config.php l33tlamer/redis-stats`
+
+* For Docker Compose a `docker-compose.example.yml` file exists in the root of this repo.
+
+* The `config.php` file with Redis connection info is required. Copy the template from this repo or copy it out of a container: `docker cp redis-stats:/var/www/html/config.template.php ./config.php`
+
 
 The following is the original readme:
 
