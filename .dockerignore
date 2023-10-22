@@ -1,8 +1,4 @@
 Dockerfile
 docker-compose.example.yml
-.github
-.gitignore
-.editorconfig
-LICENSE
 README.md
-TODO
+config.php
