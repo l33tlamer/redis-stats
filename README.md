@@ -5,7 +5,7 @@
 
 * Ready-to-use image is available from the **[Github packages](https://github.com/l33tlamer?tab=packages&repo_name=redis-stats)** registry and from the **[Docker Hub](https://hub.docker.com/r/l33tlamer/redis-stats)** registry. Currently `amd64` only.
 
-* Basic usage: `docker run -d --name redis-stats -v ./config.php:/var/www/html/config.php l33tlamer/redis-stats`
+* Basic usage: `docker run -d --name redis-stats -v ./config.php:/var/www/html/config.php -p 8080:8080 l33tlamer/redis-stats`
 
 * For Docker Compose a `docker-compose.example.yml` file exists in the root of this repo.
 
