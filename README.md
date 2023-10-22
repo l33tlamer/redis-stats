@@ -3,7 +3,7 @@
 
 **Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)**. This repo simply dockerizes it based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
 
-* Ready-to-use image is available from the **[Github packages](https://github.com/l33tlamer?tab=packages&repo_name=redis-stats)** registry and from the **[Docker Hub](https://hub.docker.com/r/l33tlamer/redis-stats)** registry. Currently `amd64` only.
+* Ready-to-use image is available from the **[Docker Hub](https://hub.docker.com/r/l33tlamer/redis-stats)** registry. Currently `amd64` only.
 
 * Basic usage: `docker run -d --name redis-stats -v ./config.php:/var/www/html/config.php -p 8080:8080 l33tlamer/redis-stats`
 
