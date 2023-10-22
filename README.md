@@ -1,6 +1,6 @@
 # redis-stats
 
-[<img src="https://github.com/l33tlamer/redis-stats/raw/master/screenshot.png" width="450"/>](https://github.com/l33tlamer/redis-stats/raw/master/screenshot.png)
+[<img src="screenshot.png" width="450"/>](screenshot.png)
 
 
 **Disclaimer**: This is a fork of **[tessus/redis-stats](https://github.com/tessus/redis-stats)** and provides a Docker image based on lightweight **[Trafex/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)**.
