@@ -1,3 +1,5 @@
+.github
+.dockerignore
 Dockerfile
 docker-compose.example.yml
 README.md
