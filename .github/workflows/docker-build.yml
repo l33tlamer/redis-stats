@@ -28,7 +28,7 @@ jobs:
 
       - if: github.ref == 'refs/heads/main'
         name: Conditional(Set tag as `latest`)
-        run: echo "tag=l33tlamer/caddy:latest" >> $GITHUB_ENV
+        run: echo "tag=l33tlamer/redis-stats:latest" >> $GITHUB_ENV
 
       -
         name: Build and push
