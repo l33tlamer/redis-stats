@@ -8,11 +8,11 @@
 
 * When used without environment variables or config file, a default of "127.0.0.1:6379" will try to be used.
 
-* For a single Redis instance, supply the environment variables `$REDIS_NAME`, `REDIS_HOST` and `REDIS_PORT` to overwrite the default.
+* For a single Redis instance, supply the environment variables `REDIS_NAME`, `REDIS_HOST` and `REDIS_PORT` to overwrite the default.
 
-* For multiple Redis instances, do not use the variables but instead mount `config.php` to `/var/www/html/config.php` in the container.
+* For multiple Redis instances, do NOT use the variables but instead mount `config.php` to `/var/www/html/config.php` in the container.
 
-* The `config.php` file can be downloaded from the repo here as template or copied out of the container:
+* The template for `config.php` file can be downloaded from the repo here or copied out of a running container:
 * * `docker cp redis-stats:/var/www/html/config.template.php ./config.php`
 
 * Edit the config file to list **multiple Redis instances**, examples are also provided for usage with **socket**, and **user/password**.
@@ -28,7 +28,7 @@ Usage examples:
 * For Docker Compose a `docker-compose.example.yml` file exists in the root of this repo.
 
 
-*From the original redis-stat the update-checker and footer have been removed.*
+*From the original redis-stats the update-checker and footer have been removed.*
 
 
 
